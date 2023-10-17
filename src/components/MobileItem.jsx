@@ -3,9 +3,9 @@ import { Grid, Card, CardContent, Button } from "@mui/material";
 
 export const MobileItem = ({ item }) => {
   return (
-    <Card>
-      <CardContent>
-        <Grid item xs={4}>
+    <Grid item xs={3}>
+      <Card sx={{ bgcolor: "khaki" }}>
+        <CardContent>
           <img src={item.img} alt="" />
           <h3>{item.brand}</h3>
           <h4>
@@ -14,8 +14,8 @@ export const MobileItem = ({ item }) => {
           <Button variant="text" color="error">
             {item.price}
           </Button>
-        </Grid>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </Grid>
   );
 };
