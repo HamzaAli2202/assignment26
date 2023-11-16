@@ -15,8 +15,9 @@ export const Product = () => {
   const [datacopy, setDatacopy] = useState([]);
   const [cate, setCate] = useState([]);
   const [sendcate, setSendcate] = useState([]);
+  const [text, setText] = useState("");
 
-  console.log(sendcate);
+  // console.log(sendcate);
 
   const getApi = async () => {
     const result = await axios.get("https://fakestoreapi.com/products");
@@ -38,6 +39,19 @@ export const Product = () => {
     setData(filt);
   }, [sendcate]);
 
+  useEffect(() => {
+    const filt = datacopy.filter((item) =>
+      item.category.toUpperCase().includes(text.toUpperCase())
+    );
+    setData(filt);
+  }, [text]);
+
+  const handleDelete = (item) => {
+    console.log("delete====", item);
+    const result = data.filter((i) => i !== item);
+    setData(result);
+  };
+
   return (
     <Grid sx={{ marginTop: 2 }} container spacing={2}>
       {cate.map((item) => (
@@ -53,7 +67,12 @@ export const Product = () => {
         </Grid>
       ))}
       <Grid item xs={8}>
-        <TextField variant="outlined" fullWidth label="Serch Here" />
+        <TextField
+          onChange={(e) => setText(e.target.value)}
+          variant="outlined"
+          fullWidth
+          label="Serch Here"
+        />
       </Grid>
       <Grid item xs={4}>
         <Button
@@ -85,7 +104,11 @@ export const Product = () => {
               <Button sx={{ margin: 2 }} variant="contained" color="warning">
                 add
               </Button>
-              <Button variant="contained" color="secondary">
+              <Button
+                onClick={() => handleDelete(item)}
+                variant="contained"
+                color="secondary"
+              >
                 delete
               </Button>
             </CardContent>

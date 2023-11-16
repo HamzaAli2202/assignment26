@@ -6,6 +6,7 @@ import { Product } from "./Product";
 import { Home } from "./Home";
 import { Nav } from "./Nav";
 import { MobileList } from "./MobileList";
+import AddtoCart from "./AddtoCart";
 
 export const Landing = () => {
   return (
@@ -17,6 +18,7 @@ export const Landing = () => {
         <Route path="/cont" element={<Contact />} />
         <Route path="/prod" element={<Product />} />
         <Route path="/tech" element={<MobileList />} />
+        <Route path="/cart" element={<AddtoCart />} />
       </Routes>
     </BrowserRouter>
   );
